@@ -14,6 +14,9 @@ jobs:
     - name: Run Java Setup and Info Workflow
       uses: ./.github/workflows/java-setup.yml
 
-    - name: Display Cache Status
-      run: |
-        echo "Cache found: ${{ steps.setup-java.outputs.cache-found }}"
+  job2:
+    runs-on: ubuntu-latest
+    needs: setup-java-and-run
+    steps:
+     - run: |
+        echo "Cache found: ${{ needs.setup-java-and-run.outputs.cache }}"
