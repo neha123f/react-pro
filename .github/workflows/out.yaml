@@ -1,0 +1,28 @@
+name: output
+
+on: workflow_dispatch
+
+jobs:
+  setup-java:
+    runs-on: ubuntu-latest
+    outputs:
+       output1: ${{ steps.step1.outputs.path }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      id: setup-java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+      
+    - name: Show Java version and path
+      id: step1
+      run: |
+        echo "Java version:"
+        java -version
+        
+        echo "Java installation path:"
+        echo path="${{ steps.setup-java.outputs.java-home }}" >> "$GITHUB_OUTPUT"
