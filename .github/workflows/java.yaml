@@ -1,6 +1,6 @@
 name: Java Setup and Info
 
-on: workflow_dispatch
+on: [push]
 
 jobs:
   setup-java:
@@ -23,4 +23,5 @@ jobs:
         java -version
         
         echo "Java installation path:"
-        echo ${{ steps.setup-java.outputs.java-home }}
+        java_path=$(dirname $(dirname $(readlink -f $(command -v java))))
+        echo "$java_path"
