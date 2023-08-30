@@ -1,11 +1,16 @@
 name: reusable file
 
 on:
-  workflow_call
+  workflow_call:
+   outputs:
+     cache:
+       value: ${{ jobs.setup-java.outputs.output1 }}
 
 jobs:
   setup-java:
     runs-on: ubuntu-latest
+    outputs:
+       output1: ${{ steps.set-cache-found.outputs.cache }}
     
     steps:
     - name: Checkout repository
@@ -37,4 +42,4 @@ jobs:
     - name: Set cache found output
       id: set-cache-found
       run: |
-        echo "::set-output name=cache-found::${{ steps.cache-java-path.outputs.cache-hit }}" 
+        echo "cache=found" >> $GITHUB_OUTPUT 
