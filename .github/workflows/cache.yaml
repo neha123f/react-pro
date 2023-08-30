@@ -1,0 +1,19 @@
+name: Main Workflow
+
+on:
+   workflow_dispatch
+
+jobs:
+  setup-java-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run Java Setup and Info Workflow
+      uses: ./.github/workflows/java-setup.yml
+
+    - name: Display Cache Status
+      run: |
+        echo "Cache found: ${{ steps.setup-java.outputs.cache-found }}"
