@@ -1,0 +1,26 @@
+name: Java Setup and Info
+
+on: workflow_dispatch
+
+jobs:
+  setup-java:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      id: setup-java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+      
+    - name: Show Java version and path
+      run: |
+        echo "Java version:"
+        java -version
+        
+        echo "Java installation path:"
+        echo ${{ steps.setup-java.outputs.java-home }}
