@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run Java Setup and Info Workflow
-      uses: ./.github/workflows/java-setup.yml
+      uses: ./.github/workflows/java-setup.yaml
 
   job2:
     runs-on: ubuntu-latest
