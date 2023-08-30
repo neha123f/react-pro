@@ -1,4 +1,4 @@
-name: Java Setup and Info
+name: reusable file
 
 on:
   workflow_call
