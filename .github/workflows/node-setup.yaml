@@ -42,4 +42,4 @@ jobs:
     - name: Set cache found output
       id: set-cache-found
       run: |
-        echo "cache=found" >> $GITHUB_ENV
+        echo "cache=found" >> $GITHUB_OUTPUT
