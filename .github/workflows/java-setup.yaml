@@ -24,6 +24,7 @@ jobs:
         java-version: '11'
       
     - name: Show Java version and path
+      id: path
       run: |
         echo "Java version:"
         java -version
@@ -36,7 +37,7 @@ jobs:
       id: cache-java-path
       uses: actions/cache@v2
       with:
-        path: ${{ env.java_path }}
+        path: ${{ steps.path.outputs.java_path }}
         key: ${{ runner.os }}-java-path-${{ hashFiles('**/*.java') }}
       
     - name: Set cache found output
