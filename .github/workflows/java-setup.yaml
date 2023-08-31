@@ -38,7 +38,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ steps.path.outputs.java_path }}
-        key: ${{ runner.os }}-${{ steps.path.outputs.java_path }}-${{ hashFiles('**/*.java') }}
+        key: ${{ runner.os }}-java-${{ hashFiles('**/*.java') }}
       
     - name: Set cache found output
       id: set-cache-found
