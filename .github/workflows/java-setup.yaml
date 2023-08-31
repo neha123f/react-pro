@@ -5,15 +5,12 @@ on:
    outputs:
      cache:
        value: ${{ jobs.setup-java.outputs.output1 }}
-     java-path:
-        value: ${{ jobs.setup-java.outputs.output2 }}
 
 jobs:
   setup-java:
     runs-on: ubuntu-latest
     outputs:
        output1: ${{ steps.set-cache-found.outputs.cache }}
-       output2: ${{ steps.path.outputs.java-path }}
     
     steps:
     - name: Checkout repository
@@ -33,14 +30,15 @@ jobs:
         java -version
         
         echo "Java installation path:"
-        java_path=$(dirname $(dirname $(readlink -f $(command -v java)))) >> $GITHUB_OUTPUT
-        echo "$java_path"  
+        java_path=$(dirname $(dirname $(readlink -f $(command -v java)))) 
+        echo "$java_path" 
+        echo "::set-output name=java_path::$java_path"
         
     - name: Cache Java path
       id: cache-java-path
       uses: actions/cache@v2
       with:
-        path: /opt/hostedtoolcache/Java_Adopt_jdk/11.0.20-101/x64
+        path: ${{ steps.path.outputs.java_path }}
         key: ${{ runner.os }}-java-${{ hashFiles('**/*.java') }}
       
     - name: Set cache found output
