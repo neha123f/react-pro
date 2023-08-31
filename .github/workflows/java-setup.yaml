@@ -1,4 +1,4 @@
-name: reusable file
+name: reusable file-java
 
 on:
   workflow_call:
