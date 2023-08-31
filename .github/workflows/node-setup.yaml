@@ -39,7 +39,7 @@ jobs:
       id: cache-node-path
       uses: actions/cache@v2
       with:
-        path: /opt/hostedtoolcache/node/14.21.3/x64
+        path: ${{ steps.path.outputs.node-path }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/*.js') }}
       
     - name: Set cache found output
