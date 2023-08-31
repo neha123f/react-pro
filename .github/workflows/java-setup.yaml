@@ -2,10 +2,6 @@ name: reusable file
 
 on:
   workflow_call:
-   inputs:
-     provision_status:
-        required: true
-        type: string
    outputs:
      cache:
        value: ${{ jobs.setup-java.outputs.output1 }}
