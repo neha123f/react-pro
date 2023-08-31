@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.set-cache-found.outputs.cache }}
-      output2: ${{ steps.path.outputs.node-path }}
+      output2: ${{ steps.path.outputs.node_path }}
     
     steps:
     - name: Checkout repository
@@ -39,7 +39,7 @@ jobs:
       id: cache-node-path
       uses: actions/cache@v2
       with:
-        path: ${{ steps.path.outputs.node-path }}
+        path: ${{ steps.path.outputs.node_path }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/*.js') }}
       
     - name: Set cache found output
