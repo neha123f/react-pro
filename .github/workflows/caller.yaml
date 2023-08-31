@@ -13,4 +13,4 @@ jobs:
     needs: setup-java-and-run
     steps:
      - run: |
-        echo "Cache found: ${{ needs.setup-java-and-run.outputs.cache }}"
+        echo "Cache found: ${{ needs.setup-java-and-run.outputs.cache }}" >> $GITHUB_STEP_SUMMARY
