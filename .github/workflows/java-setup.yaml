@@ -33,8 +33,8 @@ jobs:
         java -version
         
         echo "Java installation path:"
-        java_path=$(dirname $(dirname $(readlink -f $(command -v java))))
-        echo "$java_path"  >> $GITHUB_OUTPUT
+        java_path=$(dirname $(dirname $(readlink -f $(command -v java)))) >> $GITHUB_OUTPUT
+        echo "$java_path"  
         
     - name: Cache Java path
       id: cache-java-path
