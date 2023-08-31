@@ -13,8 +13,6 @@ jobs:
 
     - name: Run Java Setup and Info Workflow
       uses: ./.github/workflows/java-setup.yaml
-      with:
-          provision_status: "Success"
   
 
   job2:
