@@ -6,6 +6,9 @@ on:
 jobs:
   setup-java-and-run:
       uses: ./.github/workflows/java-setup.yaml
+
+  setup-node:
+     uses: ./.github/workflows/node-setup.yaml
   
 
   job2:
@@ -14,3 +17,11 @@ jobs:
     steps:
      - run: |
         echo " Java Cache : ${{ needs.setup-java-and-run.outputs.cache }}" >> $GITHUB_STEP_SUMMARY
+  job3:
+    runs-on: unbuntu-latest
+    needs: setup-node
+    steps:
+    - run: |
+         echo " Node Cache : ${{ needs.setup-node.outputs.cache }}" >> $GITHUB_STEP_SUMMARY
+      
+   
