@@ -5,15 +5,14 @@ on:
     outputs:
       cache:
         value: ${{ jobs.setup-node.outputs.output1 }}
-      node-path:
-         value: ${{ jobs.setup-node.outputs.output2 }}
+
 
 jobs:
   setup-node:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.set-cache-found.outputs.cache }}
-      output2: ${{ steps.path.outputs.node_path }}
+      
     
     steps:
     - name: Checkout repository
@@ -32,8 +31,9 @@ jobs:
         node -v
         
         echo "Node.js installation path:"
-        node_path=$(dirname $(dirname $(readlink -f $(command -v node)))) >> $GITHUB_OUTPUT
+        node_path=$(dirname $(dirname $(readlink -f $(command -v node)))) 
         echo "$node_path" 
+        echo "::set-output name=node_path::$node_path"
         
     - name: Cache Node.js path
       id: cache-node-path
