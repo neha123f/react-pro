@@ -40,6 +40,9 @@ jobs:
       with:
         path: ${{ steps.path.outputs.java_path }}
         key: ${{ runner.os }}-java-${{ hashFiles('**/*.java') }}
+        restore-keys: |
+          ${{ runner.os }}-java-
+
       
     - name: Set cache found output
       id: set-cache-found
