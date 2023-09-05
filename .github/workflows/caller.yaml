@@ -6,6 +6,9 @@ on:
 jobs:
   setup-java-and-run:
       uses: ./.github/workflows/java-setup.yaml
+      with:
+        distribution: 'adopt'
+        java-version: '11'
 
   setup-node:
      uses: ./.github/workflows/node-setup.yaml
