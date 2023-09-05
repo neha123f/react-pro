@@ -12,6 +12,8 @@ jobs:
 
   setup-node:
      uses: ./.github/workflows/node-setup.yaml
+     with:
+        node-ver: '14'
   
 
   job2:
