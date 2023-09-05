@@ -2,7 +2,11 @@ name: reusable file-node
 
 on:
   workflow_call:
-    outputs:
+   inputs:
+     node-ver:
+        required: true
+        type: string
+   outputs:
       cache:
         value: ${{ jobs.setup-node.outputs.output1 }}
 
@@ -22,7 +26,7 @@ jobs:
       id: setup-node
       uses: actions/setup-node@v2
       with:
-        node-version: '14' # You can specify the Node.js version here
+        node-version: ${{ inputs.node-ver }}
       
     - name: Show Node.js version and path
       id: path
