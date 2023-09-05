@@ -2,6 +2,13 @@ name: reusable file-java
 
 on:
   workflow_call:
+   inputs:
+     dist:
+        required: true
+        type: string
+     java-ver:
+        required: true
+        type: string
    outputs:
      cache:
        value: ${{ jobs.setup-java.outputs.output1 }}
@@ -20,8 +27,8 @@ jobs:
       id: setup-java
       uses: actions/setup-java@v3
       with:
-        distribution: 'adopt'
-        java-version: '11'
+        distribution: ${{ inputs.dist }}
+        java-version: ${{ inputs.java-ver }}
       
     - name: Show Java version and path
       id: path
